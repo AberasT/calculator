@@ -1,0 +1,83 @@
+body {
+    background-color: #FFE3E3;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#calculator {
+    background-color: #262A53;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px black;
+    margin: auto;
+    margin-top: 5vh;
+    width: 37vw;
+    height: 80vh;
+    display: grid;
+    grid-template-areas: "display-area"
+                         "buttons-area";
+    grid-template-rows: 20% 80%;
+    grid-template-columns: 100%;
+    justify-content: center;
+}
+
+#buttons {
+    grid-area: buttons-area;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#display {
+    background-color: rgb(175, 175, 175);
+    margin: 1vmax;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+#display-text {
+    font-size: 6vh;
+    margin-left: 1vw;
+}
+
+#numbers {
+    width: 63%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+#operations {
+    width: 35%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+button {
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px black;
+    font-size: 2vmax;
+    border-style: none;
+    background-color:#628395;
+    width: 6vmax;
+    height: 6vmax;
+    transition: transform 70ms ease;
+}
+
+.op-button {
+    background-color: #FFA0A0;
+}
+
+.sp-button {
+    background-color: #91b6ca;
+}
+
+button:hover {
+    transform: scale(1.07);
+    box-shadow: 0px 0px 17px black;
+}
