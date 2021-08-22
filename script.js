@@ -55,6 +55,9 @@ function updateDisplay(newChar) {
 //num2 !== '' : operate, num1 = result, display = num 1, new operator, num2 = ''
 //display = result 
 
+
+// IF I WANT TO MODIFY THE RESULT, BUGS
+
 buttons.forEach((button) => button.addEventListener('click', () => {
     switch(button.className) {
         case 'op-button':
@@ -85,8 +88,8 @@ buttons.forEach((button) => button.addEventListener('click', () => {
         case 'sp-button':
             switch(button.textContent) {
                 case '=':
-                    if (num1 == '') { break }
-                    operate(operator,num1,num2); //if i pressed = and with the result i operate
+                    if (num1 == '' || num2 == '') { break };
+                    operate(operator,num1,num2);
                     display.textContent = result;
                     reSet();
                     break;
@@ -98,14 +101,18 @@ buttons.forEach((button) => button.addEventListener('click', () => {
                     if (display.textContent == '_') { break }
                     else {
                         if (operator !== '') {
-                            if (num2 == '') {operator = '' } //If there is already an operator, replace
+                            if (num2 == '') {operator = '' }
                             else { num2 = num2.slice(0,num2.length - 1) };
                         }
                         else {
                             num1 = num1.slice(0,num1.length - 1);
                         };
-                    }
+                    };
+                    if (display.textContent == result) { break };
                     display.textContent = display.textContent.slice(0,display.textContent.length - 1);
+                    break;
+                case 'ANS':
+                    updateDisplay(result.toString());  //num2 = ANS error
                     break;
             }
             break;
