@@ -1,6 +1,12 @@
 body {
     background-color: #FFE3E3;
     font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 #calculator {

@@ -25,7 +25,7 @@ function operate(op = '+',a = '0',b = '0') {
         case '-':
             result = subtract(a,b);
             break;
-        case 'x':
+        case '*':
             result = multiply(a,b);
             break;
         case '/':
@@ -57,6 +57,10 @@ function updateDisplay(newChar) {
 
 
 // IF I WANT TO MODIFY THE RESULT, BUGS
+
+//Pressing = before entering all of the numbers or an operator could cause problems!
+
+
 
 buttons.forEach((button) => button.addEventListener('click', () => {
     switch(button.className) {
@@ -112,7 +116,7 @@ buttons.forEach((button) => button.addEventListener('click', () => {
                     display.textContent = display.textContent.slice(0,display.textContent.length - 1);
                     break;
                 case 'ANS':
-                    updateDisplay(result.toString());  //num2 = ANS error
+                    updateDisplay(result.toString);  //num2 = ANS error
                     break;
             }
             break;
@@ -124,3 +128,42 @@ buttons.forEach((button) => button.addEventListener('click', () => {
     }
 
 }));
+
+function pressButton(code) {
+    let i = 0;
+    let ok = true;
+    if ((code >= 0 && code < 10) || code == '+' || code == '-' || code == '*' || code == '/') {
+        while (ok) {
+            if (buttons[i].textContent == code && ok) {
+                buttons[i].click();
+                ok = false;
+            };
+            i++;
+        };
+    } else {
+        switch(code) {
+            case 'Enter':
+                buttons[18].click();
+                break;
+            case 'Backspace':
+                buttons[12].click();
+                break;
+            case 'Delete':
+                buttons[13].click();
+                break;
+        };
+    };
+
+    
+}
+
+document.addEventListener('keydown', (event) => {
+    pressButton(event.key)
+});
+
+/*
+1 : 6
+2 : 7
+3 : 8
+
+*/
