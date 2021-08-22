@@ -9,7 +9,8 @@ body {
     box-shadow: 0px 0px 15px black;
     margin: auto;
     margin-top: 5vh;
-    width: 37vw;
+    width: 60vw;
+    max-width: 490px;
     height: 80vh;
     display: grid;
     grid-template-areas: "display-area"
@@ -28,15 +29,15 @@ body {
 
 #display {
     background-color: rgb(175, 175, 175);
-    margin: 1vmax;
+    margin: 1.5vmax;
     border-radius: 15px;
     display: flex;
-    align-items: center;
+    place-items: center;
 }
 
 #display-text {
     font-size: 6vh;
-    margin-left: 1vw;
+    margin-left: 2vw;
 }
 
 #numbers {
@@ -44,8 +45,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    justify-items: center;
-    align-items: center;
+    place-items: center;
 }
 
 #operations {
@@ -53,19 +53,20 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    justify-items: center;
-    align-items: center;
+    place-items: center;
 }
 
 button {
     border-radius: 15px;
     cursor: pointer;
     box-shadow: 0px 0px 10px black;
-    font-size: 2vmax;
+    font-size: 3vmin;
     border-style: none;
     background-color:#628395;
-    width: 6vmax;
-    height: 6vmax;
+    width: 10vmin;
+    min-width: 50px;
+    height: 10vmin;
+    min-height: 50px;
     transition: transform 70ms ease;
 }
 
