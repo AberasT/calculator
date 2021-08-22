@@ -1,7 +1,16 @@
 const display = document.querySelector('#display-text');
 display.textContent = '_';
 
-let num1 = '', num2 = '', operator = '', result;
+let num1, num2, operator, result;
+
+//Restarts num1, num2, operator
+function reSet() {
+    num1 = '';
+    num2 = '';
+    operator = '';
+};
+
+reSet();
 
 function add(a,b) { return parseFloat(a)+parseFloat(b); };
 function subtract(a,b) { return a-b};
@@ -35,36 +44,48 @@ function updateDisplay(newChar) {
     
 };
 
-//LIMIT DISPLAY
 
+
+//LIMIT DISPLAY
+//When there is a result, what happens if i press DEL?
 
 buttons.forEach((button) => button.addEventListener('click', () => {
-    updateDisplay(button.textContent);
     switch(button.className) {
         case 'op-button':
             operator = button.textContent;
+            updateDisplay(button.textContent);
             break;
         case 'sp-button':
             switch(button.textContent) {
                 case '=':
                     operate(operator,num1,num2);
                     display.textContent = result;
-                    num1 = '';
-                    num2 = '';
-                    operator = '';
+                    reSet();
                     break;
                 case 'AC':
-                    num1 = '';
-                    num2 = '';
-                    operator = '';
+                    reSet();
                     display.textContent = '_';
                     break;
-                
+                case 'DEL':
+                    if (display.textContent == '_') { break }
+                    else {
+                        if (operator !== '') {
+                            if (num2 == '') { operator = '' } //If there is already an operator, replace
+                            else { num2 = num2.slice(0,num2.length - 1) };
+                        }
+                        else {
+                            num1 = num1.slice(0,num1.length - 1);
+                        };
+                    }
+                    display.textContent = display.textContent.slice(0,display.textContent.length - 1);
+                    break;
             }
             break;
         default:
             if (operator !== '') { num2 += button.textContent}
             else {num1 += button.textContent};
+            updateDisplay(button.textContent);
+            break;
     }
 
 }));
