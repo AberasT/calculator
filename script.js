@@ -137,7 +137,7 @@ function pressAnimate(btn) {
 function pressButton(code) {
     let i = 0;
     let ok = true;
-    if ((code >= 0 && code < 10) || code == '+' || code == '-' || code == '*' || code == '/') {
+    if ((code >= 0 && code < 11) || code == '+' || code == '-' || code == '*' || code == '/' || code == '.') {
         while (ok) {
             if (buttons[i].textContent == code && ok) {
                 buttons[i].click();
