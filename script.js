@@ -31,7 +31,7 @@ function operate(op = '+',a = '0',b = '0') {
         case '/':
             result = divide(a,b);
             break;
-    }
+    };
 };
 
 const buttons = Array.from(document.querySelectorAll('button'));
@@ -47,6 +47,7 @@ function updateDisplay(newChar) {
 
 
 //LIMIT DISPLAY
+//WHEN DELETE LEAVES BLANK?
 //When there is a result, what happens if i press DEL?
 
 //num1 !== '' && operator = ''
@@ -126,8 +127,12 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             updateDisplay(button.textContent);
             break;
     }
-
 }));
+
+function pressAnimate(btn) {
+    btn.classList.add('pressed');
+    setTimeout(function() { btn.classList.remove("pressed") }, 90);
+};
 
 function pressButton(code) {
     let i = 0;
@@ -136,6 +141,7 @@ function pressButton(code) {
         while (ok) {
             if (buttons[i].textContent == code && ok) {
                 buttons[i].click();
+                pressAnimate(buttons[i]);
                 ok = false;
             };
             i++;
@@ -144,21 +150,23 @@ function pressButton(code) {
         switch(code) {
             case 'Enter':
                 buttons[18].click();
+                pressAnimate(buttons[18]);
                 break;
             case 'Backspace':
                 buttons[12].click();
+                pressAnimate(buttons[12]);
                 break;
             case 'Delete':
                 buttons[13].click();
+                buttons[13].classList.add('pressed');
+                pressAnimate(buttons[13]);
                 break;
         };
     };
-
-    
 }
 
 document.addEventListener('keydown', (event) => {
-    pressButton(event.key)
+    pressButton(event.key);
 });
 
 /*

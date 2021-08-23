@@ -92,3 +92,9 @@ button:hover {
 button:active {
     transform: scale(0.9);
 }
+
+.pressed {
+    color: white;
+    text-shadow: 0px 0px 2px white;
+    transform: scale(0.9);
+}
