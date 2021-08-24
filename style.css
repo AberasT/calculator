@@ -74,6 +74,28 @@ a {
 
 }
 
+img {
+    height: 6vmin;
+    width: 6vmin;
+    margin: auto;
+    margin-top: 7px;
+}
+
+#gh-button:hover #gh-black {
+    display: none;
+}
+
+#gh-white {
+    display: none;
+}
+
+#gh-button:hover #gh-white {
+    display: block;
+    margin-top: 0px;
+    filter: drop-shadow(0px 0px 2px white);
+}
+
+
 button {
     border-radius: 15px;
     cursor: pointer;

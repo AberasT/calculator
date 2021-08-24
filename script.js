@@ -1,5 +1,5 @@
 const display = document.querySelector('#display-text');
-display.textContent = '_';
+display.textContent = '|';
 
 let num1, num2, operator, result;
 
@@ -11,6 +11,11 @@ function reSet() {
 };
 
 reSet();
+
+
+//another display limit bug 
+//
+
 
 function add(a,b) { return parseFloat(a)+parseFloat(b); };
 function subtract(a,b) { return a-b};
@@ -34,19 +39,17 @@ function operate(op = '+',a = '0',b = '0') {
     };
 };
 
-const buttons = Array.from(document.querySelectorAll('button'));
 
 function updateDisplay(newChar) {
-    if (display.textContent == '_') { display.textContent = newChar }
+    if (display.textContent == '|') { display.textContent = newChar }
     else {
         display.textContent += newChar
     };
     
 };
 
-
 // IF I WANT TO MODIFY THE RESULT, BUGS
-
+const buttons = Array.from(document.querySelectorAll('button'));
 buttons.forEach((button) => button.addEventListener('click', () => {
     switch(button.className) {
         case 'op-button':
@@ -71,7 +74,7 @@ buttons.forEach((button) => button.addEventListener('click', () => {
                 reSet();
                 num1 = result;
                 operator = button.textContent;
-                display.textContent = result + operator;
+                display.textContent = Math.round(result * 100000) / 100000 + operator;
             }
             break;
         case 'sp-button':
@@ -80,15 +83,15 @@ buttons.forEach((button) => button.addEventListener('click', () => {
                     if (num1 == '' || num2 == '') { break };
                     operate(operator,num1,num2);
                     display.textContent = Math.round(result * 100000) / 100000;
-                    if (display.textContent == '_') { alert('ERROR') }
+                    if (display.textContent == '|') { alert('ERROR') }
                     reSet();
                     break;
                 case 'AC':
                     reSet();
-                    display.textContent = '_';
+                    display.textContent = '|';
                     break;
                 case 'DEL':
-                    if (display.textContent == '_') { break }
+                    if (display.textContent == '|') { break }
                     else {
                         if (operator !== '') {
                             if (num2 == '') {operator = '' }
@@ -99,7 +102,7 @@ buttons.forEach((button) => button.addEventListener('click', () => {
                         };
                     };
                     if (display.textContent == result) { break };
-                    if (num1 == '') { display.textContent = '_' }
+                    if (num1 == '') { display.textContent = '|' }
                     else { display.textContent = display.textContent.slice(0,display.textContent.length - 1) };
                     break;
                 case 'ANS':
