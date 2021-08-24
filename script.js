@@ -45,23 +45,7 @@ function updateDisplay(newChar) {
 };
 
 
-
-//LIMIT DISPLAY
-//WHEN DELETE LEAVES BLANK?
-//When there is a result, what happens if i press DEL?
-
-//num1 !== '' && operator = ''
-//num1 = ''  : no modificar nada
-//operator != '' && num2 = '' : reemplazar op, y en display
-//num2 !== '' : operate, num1 = result, display = num 1, new operator, num2 = ''
-//display = result 
-
-
 // IF I WANT TO MODIFY THE RESULT, BUGS
-
-//Pressing = before entering all of the numbers or an operator could cause problems!
-
-
 
 buttons.forEach((button) => button.addEventListener('click', () => {
     switch(button.className) {
@@ -95,7 +79,8 @@ buttons.forEach((button) => button.addEventListener('click', () => {
                 case '=':
                     if (num1 == '' || num2 == '') { break };
                     operate(operator,num1,num2);
-                    display.textContent = result;
+                    display.textContent = Math.round(result * 100000) / 100000;
+                    if (display.textContent == '_') { alert('ERROR') }
                     reSet();
                     break;
                 case 'AC':
@@ -114,7 +99,8 @@ buttons.forEach((button) => button.addEventListener('click', () => {
                         };
                     };
                     if (display.textContent == result) { break };
-                    display.textContent = display.textContent.slice(0,display.textContent.length - 1);
+                    if (num1 == '') { display.textContent = '_' }
+                    else { display.textContent = display.textContent.slice(0,display.textContent.length - 1) };
                     break;
                 case 'ANS':
                     updateDisplay(result.toString);  //num2 = ANS error
@@ -122,9 +108,12 @@ buttons.forEach((button) => button.addEventListener('click', () => {
             }
             break;
         default:
-            if (operator !== '') { num2 += button.textContent}
-            else {num1 += button.textContent};
-            updateDisplay(button.textContent);
+            if (display.textContent.length > 15) { break }
+            else {
+                if (operator !== '') { num2 += button.textContent}
+                else {num1 += button.textContent};
+                updateDisplay(button.textContent);
+            }
             break;
     }
 }));
@@ -168,10 +157,3 @@ function pressButton(code) {
 document.addEventListener('keydown', (event) => {
     pressButton(event.key);
 });
-
-/*
-1 : 6
-2 : 7
-3 : 8
-
-*/
