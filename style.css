@@ -69,7 +69,7 @@ button {
     font-size: 3.2vmin;
     border-style: none;
     background-color:#628395;
-    width: 12vmin;
+    width: 11vmin;
     height: 9vmin;
     transition: transform 70ms ease;
 }
