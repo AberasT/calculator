@@ -15,8 +15,7 @@ a {
     box-shadow: 0px 0px 15px black;
     margin: auto;
     margin-top: 5vh;
-    width: 65vw;
-    max-width: 490px;
+    width: 40vw;
     height: 80vh;
     display: grid;
     grid-template-areas: "display-area"
@@ -69,8 +68,8 @@ button {
     font-size: 3.2vmin;
     border-style: none;
     background-color:#628395;
-    width: 11vmin;
-    height: 9vmin;
+    width: 6vmax;
+    height: 11vmin;
     transition: transform 70ms ease;
 }
 
