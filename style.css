@@ -15,7 +15,7 @@ a {
     box-shadow: 0px 0px 15px black;
     margin: auto;
     margin-top: 5vh;
-    width: 60vw; /* FIX RESPONSIVE WIDTH */
+    width: 65vw;
     max-width: 490px;
     height: 80vh;
     display: grid;
@@ -62,16 +62,28 @@ a {
     place-items: center;
 }
 
-@media screen and (max-aspect-ratio: 10/10) {
-    #calculator {
-        grid-template-rows: 10% 90%;
-    }
-    #buttons {
-        flex-direction: column;
-        place-content: center;
-    }
-    
+button {
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px black;
+    font-size: 3.2vmin;
+    border-style: none;
+    background-color:#628395;
+    width: 12vmin;
+    height: 9vmin;
+    transition: transform 70ms ease;
+}
 
+@media screen and (max-aspect-ratio: 14/10) {
+    #calculator {
+        width: 100%;
+        max-width: none;
+    }
+    button {
+        width: 15vmin;
+        height: 10vmax;
+        font-size: 3vmax;
+    }
 }
 
 img {
@@ -93,21 +105,6 @@ img {
     display: block;
     margin-top: 0px;
     filter: drop-shadow(0px 0px 2px white);
-}
-
-
-button {
-    border-radius: 15px;
-    cursor: pointer;
-    box-shadow: 0px 0px 10px black;
-    font-size: 3.5vmin;
-    border-style: none;
-    background-color:#628395;
-    width: 10vmin;
-    min-width: 50px;
-    height: 10vmin;
-    min-height: 50px;
-    transition: transform 70ms ease;
 }
 
 .op-button {
