@@ -4,9 +4,8 @@ body {
     text-align: center;
 }
 
-a {
-    text-decoration: none;
-    color: black;
+p {
+    font-size: 2.2vw;
 }
 
 #calculator {
@@ -15,8 +14,7 @@ a {
     box-shadow: 0px 0px 15px black;
     margin: auto;
     margin-top: 5vh;
-    width: 60vw; /* FIX RESPONSIVE WIDTH */
-    max-width: 490px;
+    width: 40vw;
     height: 80vh;
     display: grid;
     grid-template-areas: "display-area"
@@ -62,16 +60,31 @@ a {
     place-items: center;
 }
 
-@media screen and (max-aspect-ratio: 10/10) {
-    #calculator {
-        grid-template-rows: 10% 90%;
-    }
-    #buttons {
-        flex-direction: column;
-        place-content: center;
-    }
-    
+button {
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px black;
+    font-size: 3.2vmin;
+    border-style: none;
+    background-color:#628395;
+    width: 6vmax;
+    height: 11vmin;
+    transition: transform 70ms ease;
+}
 
+@media screen and (max-aspect-ratio: 14/10) {
+    #calculator {
+        width: 100%;
+        max-width: none;
+    }
+    button {
+        width: 15vmin;
+        height: 10vmax;
+        font-size: 3vmax;
+    }
+    p {
+        font-size: 3vh;
+    }
 }
 
 img {
@@ -93,21 +106,6 @@ img {
     display: block;
     margin-top: 0px;
     filter: drop-shadow(0px 0px 2px white);
-}
-
-
-button {
-    border-radius: 15px;
-    cursor: pointer;
-    box-shadow: 0px 0px 10px black;
-    font-size: 1.5rem;
-    border-style: none;
-    background-color:#628395;
-    width: 5rem;
-    min-width: 50px;
-    height: 5rem;
-    min-height: 50px;
-    transition: transform 70ms ease;
 }
 
 .op-button {
@@ -132,3 +130,4 @@ button:active {
     text-shadow: 0px 0px 2px white;
     transform: scale(0.9);
 }
+

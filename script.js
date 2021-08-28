@@ -1,7 +1,8 @@
 const display = document.querySelector('#display-text');
 display.textContent = '|';
 
-let num1, num2, operator, result;
+let num1, num2, operator;
+let result = '';
 
 //Restarts num1, num2, operator
 function reSet() {
@@ -12,24 +13,24 @@ function reSet() {
 
 reSet();
 
-function add(a,b) { return parseFloat(a)+parseFloat(b); };
-function subtract(a,b) { return a-b};
-function multiply(a,b) { return a*b};
-function divide(a,b) { return a/b};
+function add(a,b) { return parseFloat(a)+parseFloat(b) };
+function subtract(a,b) { return a-b };
+function multiply(a,b) { return a*b };
+function divide(a,b) { return a/b };
 
 function operate(op = '+',a = '0',b = '0') {
     switch(op) {
         case '+':
-            result = add(a,b);
+            result = Math.trunc(add(a,b) * 100000) / 100000;
             break;
         case '-':
-            result = subtract(a,b);
+            result = Math.trunc(subtract(a,b) * 100000) / 100000;
             break;
         case '*':
-            result = multiply(a,b);
+            result = Math.trunc(multiply(a,b) * 100000) / 100000;
             break;
         case '/':
-            result = divide(a,b);
+            result = Math.trunc(divide(a,b) * 100000) / 100000;
             break;
     };
 };
@@ -37,47 +38,51 @@ function operate(op = '+',a = '0',b = '0') {
 
 function updateDisplay(newChar) {
     if (display.textContent == '|') { display.textContent = newChar }
-    else {
-        display.textContent += newChar
-    };
-    
+    else { display.textContent += newChar };
 };
 
-// IF I WANT TO MODIFY THE RESULT, BUGS
 const buttons = Array.from(document.querySelectorAll('button'));
 buttons.forEach((button) => button.addEventListener('click', () => {
     switch(button.className) {
         case 'op-button':
-            if (num1 == '') {
+            if (num1 === '') {
                 if (display.textContent == result) {
                     num1 = result;
                     updateDisplay(button.textContent);
                     operator = button.textContent;
+                } else if (button.textContent == '-') {
+                    num1 += button.textContent;
+                    updateDisplay(button.textContent);
                 } else { break };
-            } 
+            }
             else if (operator == '') {
                 operator = button.textContent;
                 updateDisplay(button.textContent);
             }
-            else if (operator !== '' && num2 == '') {
-                operator = button.textContent;
-                display.textContent = display.textContent.slice(0,display.textContent.length - 1);
-                updateDisplay(button.textContent);
+            else if (operator !== '' && num2 === '') {
+                if (button.textContent == '-') {
+                    num2 += button.textContent;
+                    updateDisplay(button.textContent);
+                } else {
+                    operator = button.textContent;
+                    display.textContent = display.textContent.slice(0,display.textContent.length - 1);
+                    updateDisplay(button.textContent);
+                }
             }
             else {
                 operate(operator,num1,num2);
                 reSet();
                 num1 = result;
                 operator = button.textContent;
-                display.textContent = Math.round(result * 100000) / 100000 + operator;
+                display.textContent = result + operator;
             }
             break;
         case 'sp-button':
             switch(button.textContent) {
                 case '=':
-                    if (num1 == '' || num2 == '') { break };
+                    if (num1 === '' || num2 === '') { break };
                     operate(operator,num1,num2);
-                    display.textContent = Math.round(result * 100000) / 100000;
+                    display.textContent = result;
                     if (display.textContent == '|') { alert('ERROR') }
                     reSet();
                     break;
@@ -89,7 +94,7 @@ buttons.forEach((button) => button.addEventListener('click', () => {
                     if (display.textContent == '|') { break }
                     else {
                         if (operator !== '') {
-                            if (num2 == '') {operator = '' }
+                            if (num2 === '') {operator = '' }
                             else { num2 = num2.slice(0,num2.length - 1) };
                         }
                         else {
@@ -97,16 +102,28 @@ buttons.forEach((button) => button.addEventListener('click', () => {
                         };
                     };
                     if (display.textContent == result) { break };
-                    if (num1 == '') { display.textContent = '|' }
+                    if (num1 === '') { display.textContent = '|' }
                     else { display.textContent = display.textContent.slice(0,display.textContent.length - 1) };
                     break;
                 case 'ANS':
-                    updateDisplay(result.toString);  //num2 = ANS error
+                    if (result !== '') {
+                        if (display.textContent == result) { break }
+                        else {
+                            if (num1 === '') {
+                                num1 = result;
+                                updateDisplay(result);
+                            }
+                            else if (num2 === '') {
+                                num2 = result;
+                                updateDisplay(result);
+                            };
+                        };
+                        }
                     break;
             }
             break;
         default:
-            if (display.textContent.length > 15) { break }
+            if ((display.textContent.length > 15) || (display.textContent == result)) { break }
             else {
                 if (operator !== '') { num2 += button.textContent}
                 else {num1 += button.textContent};
@@ -147,6 +164,11 @@ function pressButton(code) {
                 buttons[13].click();
                 buttons[13].classList.add('pressed');
                 pressAnimate(buttons[13]);
+                break;
+            case 'a':
+                buttons[11].click();
+                buttons[11].classList.add('pressed');
+                pressAnimate(buttons[11]);
                 break;
         };
     };
