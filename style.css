@@ -1,15 +1,16 @@
 body {
-    background-color: #FFE3E3;
+    background-color: #2c2e43;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
 }
 
 p {
     font-size: 2.2vw;
+    color: azure;
 }
 
 #calculator {
-    background-color: #262A53;
+    background-color: #595260;
     border-radius: 10px;
     box-shadow: 0px 0px 15px black;
     margin: auto;
@@ -42,6 +43,7 @@ p {
 #display-text {
     font-size: 6vh;
     margin-left: 2vw;
+    text-shadow: 1px 1px 2px rgb(119, 119, 119);
 }
 
 #numbers {
@@ -66,7 +68,7 @@ button {
     box-shadow: 0px 0px 10px black;
     font-size: 3.2vmin;
     border-style: none;
-    background-color:#628395;
+    background-color:#B2B1B9;
     width: 6vmax;
     height: 11vmin;
     transition: transform 70ms ease;
@@ -109,11 +111,11 @@ img {
 }
 
 .op-button {
-    background-color: #FFA0A0;
+    background-color: #FFD523;
 }
 
 .sp-button {
-    background-color: #91b6ca;
+    background-color: #e4d69a;
 }
 
 button:hover {
