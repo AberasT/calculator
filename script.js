@@ -74,16 +74,17 @@ buttons.forEach((button) => button.addEventListener('click', () => {
                 reSet();
                 num1 = result;
                 operator = button.textContent;
-                display.textContent = result + operator;
-            }
+                if (result == 'NaN') { display.textContent = 'Check your syntax!' }
+                else { display.textContent = result + operator };
+            };
             break;
         case 'sp-button':
             switch(button.textContent) {
                 case '=':
                     if (num1 === '' || num2 === '') { break };
                     operate(operator,num1,num2);
-                    display.textContent = result;
-                    if (display.textContent == '|') { alert('ERROR') }
+                    if (result == 'NaN') { display.textContent = 'Check your syntax!' }
+                    else { display.textContent = result };
                     reSet();
                     break;
                 case 'AC':
